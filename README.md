@@ -1,15 +1,27 @@
 # Introduction
 
-brief introduction about the library
+Common React hooks for application development
 
 # Installation
 
-`paste the install command here`
+```shell
+yarn add @npm-telluria-tecnologia/telluria-react-hooks
+
+or
+
+npm i @npm-telluria-tecnologia/telluria-react-hooks
+```
 
 # Usage
 
-`language of use`
+`ts`
+
+```ts
+import useGetter from "@npm-telluria-tecnologia/telluria-react-hooks";
+```
+
+`js`
 
 ```js
-paste the code example here
+const useGetter = require("@npm-telluria-tecnologia/telluria-react-hooks");
 ```
