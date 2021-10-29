@@ -4,7 +4,13 @@
     "es2021": true,
     "jest": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -15,12 +21,15 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/no-shadow": ["error"],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"],
+    "quotes": ["error", "double"],
+    "comma-dangle": ["error", "never"],
+    "import/prefer-default-export": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -29,6 +38,17 @@
         "jsx": "never",
         "ts": "never",
         "tsx": "never"
+      }
+    ],
+    "padded-blocks": ["error", { "classes": "always" }],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      {
+        "blankLine": "any",
+        "prev": ["const", "let", "var"],
+        "next": ["const", "let", "var"]
       }
     ]
   },

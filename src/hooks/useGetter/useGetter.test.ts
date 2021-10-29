@@ -1,6 +1,6 @@
-import { act, renderHook } from '@testing-library/react-hooks';
-import { useState } from 'react';
-import useGetter from './useGetter';
+import { act, renderHook } from "@testing-library/react-hooks";
+import { useState } from "react";
+import useGetter from "./useGetter";
 
 function useCount(number: number) {
   const [count, setCount] = useState(number);
@@ -11,8 +11,8 @@ function useCount(number: number) {
   return { count, setCount, getCount };
 }
 
-describe('useGetter hook', () => {
-  it('should maintain getter reference after change state', () => {
+describe("useGetter hook", () => {
+  it("should maintain getter reference after change state", () => {
     const { result } = renderHook(() => useCount(1));
 
     const previousRef = result.current.getCount;
