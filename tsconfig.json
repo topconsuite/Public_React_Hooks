@@ -38,6 +38,7 @@
     "node_modules",
     "dist",
     "example",
-    "rollup.config.js"
+    "rollup.config.js",
+    "**/*.test.ts"
   ]
 }

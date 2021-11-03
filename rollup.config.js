@@ -1,6 +1,4 @@
-// import sass from "rollup-plugin-sass";
 import typescript from "rollup-plugin-typescript2";
-import resolve from "@rollup/plugin-node-resolve";
 
 import pkg from "./package.json";
 
@@ -16,8 +14,7 @@ export default {
     }
   ],
   plugins: [
-    resolve(),
     typescript({ objectHashIgnoreUnknownHack: true })
   ],
-  external: ["react", "react-dom", "react-scripts", "testing-library", "styled-components"]
+  external: ["react", "react-dom", "styled-components"]
 };
