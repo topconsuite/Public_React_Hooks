@@ -1,6 +1,6 @@
 {
   "name": "@npm-telluria-tecnologia/telluria-react-hooks",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "Common React hooks for application development",
   "main": "dist/index.js",
   "types": "dist",
