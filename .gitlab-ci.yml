@@ -49,5 +49,6 @@ NPM publish:
   extends: .base-rules
   needs: ["Sonarqube analyze"]
   script:
-    - yarn pubnpm
+    - "npm install --global yarn"
+    - "yarn pubnpm"
   allow_failure: true
