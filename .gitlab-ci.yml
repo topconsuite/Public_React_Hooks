@@ -1,6 +1,7 @@
 default:
-  name: sonarsource/sonar-scanner-cli:latest
-  entrypoint: [""]
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
 stages:
   - Build
   - Sonarqube analyze
