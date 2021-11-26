@@ -3,7 +3,6 @@ default:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
 stages:
-  - Build
   - Sonarqube analyze
   - NPM publish
 variables:
@@ -23,13 +22,6 @@ variables:
     - when: manual
       allow_failure: true
 
-Build:
-  stage: Build
-  extends: .base-rules
-  needs: []
-  script:
-    - "npm install --global yarn"
-    - "yarn"
 Sonarqube analyze:
   stage: Sonarqube analyze
   extends: .base-rules
@@ -50,5 +42,6 @@ NPM publish:
   needs: ["Sonarqube analyze"]
   script:
     - "npm install --global yarn"
+    - "yarn"
     - "yarn pubnpm"
   allow_failure: true
