@@ -1,0 +1,6 @@
+{
+  "sonarlint.connectedMode.project": {
+    "connectionId": "telluriatecnologia", // According defined in settings.json (USER)
+    "projectKey": "Telluria-React-Hooks" // According sonarqube server project
+  }
+}
