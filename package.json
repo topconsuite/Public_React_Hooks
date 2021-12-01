@@ -1,7 +1,16 @@
 {
   "name": "@npm-telluria-tecnologia/telluria-react-hooks",
-  "version": "1.1.15",
   "description": "Common React hooks for application development",
+  "version": "1.2.15",
+  "license": "MIT",
+  "author": "Telluria Tecnologia",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/t3105/telluria-react-hooks.git"
+  },
+  "keywords": [
+    "utils", "telluria", "react", "hooks", "react-hooks", "TS"
+  ],
   "main": "dist/index.js",
   "types": "dist",
   "scripts": {
@@ -16,9 +25,6 @@
     "linkpackage": "yarn link && npm link ../react-app-test-npm-library/node_modules/react/",
     "unlinkpackage": "yarn unlink && npm unlink ../react-app-test-npm-library/node_modules/react/"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "peerDependencies": {
     "@testing-library/jest-dom": ">= 5.0",
     "@testing-library/react": ">=12.1",
