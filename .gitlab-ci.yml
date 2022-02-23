@@ -42,7 +42,8 @@ NPM publish:
   needs: []
   script:
     - "npm install --global yarn"
-    - echo "//registry.npmjs.org/:_authToken=${NPM_AUTOMATION_TOKEN}" > .npmrc
+    - 'echo ${NPM_AUTOMATION_TOKEN}'
+    - 'echo "//registry.npmjs.org/:_authToken=${NPM_AUTOMATION_TOKEN}" > .npmrc'
     - "yarn"
     - "yarn pubnpm"
   allow_failure: true
