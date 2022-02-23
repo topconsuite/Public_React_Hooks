@@ -42,8 +42,6 @@ NPM publish:
   needs: []
   script:
     - "npm install --global yarn"
-    - "npm install --global npm-login-noninteractive"
-    - 'npm-login-noninteractive -u "$NPM_USERNAME" -p "$NPM_PASSWORD" -e "$NPM_MAIL"'
     - "yarn"
     - "yarn pubnpm"
   allow_failure: true
