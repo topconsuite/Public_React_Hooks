@@ -60,7 +60,9 @@ jobs:
         run: sudo npm install --global yarn
       - name: Install dependencies
         run: yarn
+      - name: Build package
+        run: yarn build
+      - name: Authenticate with npm
+        run: npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTOMATION_TOKEN
       - name: Publish NPM package
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_AUTOMATION_TOKEN}" > .npmrc
-          yarn pubnpm
+        run: npm publish --no-git-tag-version --access public
