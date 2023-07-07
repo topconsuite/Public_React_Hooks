@@ -1,0 +1,66 @@
+name: topconsuite/scan-build-publish-public-repository
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.ref }}"
+  cancel-in-progress: true
+env:
+  DOCKER_USER: ${{ secrets.DOCKER_USER }}
+  DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  NPM_AUTOMATION_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
+jobs:
+  sonarqube:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v3.5.0
+        with:
+          fetch-depth: '0'
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3.3.1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Install JQ
+        run: sudo apt-get install jq
+      - name: Get package.json version
+        id: package_version
+        run: echo "VERSION=$(jq -r .version package.json)" >> $GITHUB_ENV
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        with:
+          args: >
+            -Dsonar.projectVersion=${{ env.VERSION }}
+  npm-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    continue-on-error: true
+    needs: sonarqube
+    steps:
+      - uses: actions/checkout@v3.5.0
+        with:
+          fetch-depth: '0'
+      - name: Cache NPM packages
+        uses: actions/cache@v3.3.1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm
+          restore-keys: ${{ runner.os }}-npm
+      - name: Install NPM
+        run: sudo apt-get install npm
+      - name: Install Yarn
+        run: sudo npm install --global yarn
+      - name: Install dependencies
+        run: yarn
+      - name: Publish NPM package
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_AUTOMATION_TOKEN}" > .npmrc
+          yarn pubnpm
